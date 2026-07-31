@@ -18,7 +18,7 @@ export const copy = {
     meta: {
       title: "SENI marketing — Contenido, Ads y estrategia en Houston",
       description:
-        "Producimos el video, escribimos el mensaje y corremos los anuncios. Realtors, creadores y negocios de Houston, en español y en inglés.",
+        "Producimos el video, escribimos el mensaje y corremos los anuncios. Realtors, creadores y negocios de Houston.",
     },
     nav: {
       links: [
@@ -84,8 +84,8 @@ export const copy = {
           body: "Después del «hola, ¿en qué te ayudo?» nadie sabe qué sigue, así que cada conversación sale distinta según quién esté contestando.",
         },
         {
-          title: "Publicas en inglés y en español lo mismo, traducido",
-          body: "En Houston tu cliente vive en los dos idiomas, y una traducción literal se nota de inmediato en el idioma en el que no pensaste el mensaje.",
+          title: "Cada mes empiezas de cero a ver qué subes",
+          body: "Sin un plan de tres meses, el contenido se decide el mismo día y se nota: sale apurado, sin remate y sin una idea que lo hile con lo anterior.",
         },
       ],
       closer: {
@@ -110,7 +110,7 @@ export const copy = {
         },
         {
           title: "Armamos el mensaje",
-          body: "Elegimos una promesa y la manera de decirla, en los dos idiomas. Si tu oferta no cabe en una frase que tu cliente entienda a la primera, todavía no está lista para pautarse.",
+          body: "Elegimos una promesa y la manera de decirla. Si tu oferta no cabe en una frase que tu cliente entienda a la primera, todavía no está lista para pautarse.",
           out: "Mensaje y oferta",
         },
         {
@@ -157,7 +157,7 @@ export const copy = {
           name: "Redes sociales",
           benefit: "Tu marca aparece cada semana y tú ya no tienes que inventar qué subir el domingo en la noche.",
           detail:
-            "Calendario, redacción en español y en inglés, publicación y respuesta a comentarios y mensajes.",
+            "Calendario, redacción, publicación y respuesta a comentarios y mensajes.",
         },
         {
           name: "Posicionamiento de marca",
@@ -169,7 +169,7 @@ export const copy = {
           name: "Sitio web y landing pages",
           benefit: "Que el clic termine en una cita y no en una página que tarda seis segundos en abrir.",
           detail:
-            "Sitios rápidos, bilingües, con formulario, WhatsApp y medición conectada desde el primer día.",
+            "Sitios rápidos, con formulario, WhatsApp y medición conectada desde el primer día.",
         },
       ],
     },
@@ -190,7 +190,7 @@ export const copy = {
       cases: [
         {
           tag: "Realtor",
-          title: "Video semanal y contenido en los dos idiomas",
+          title: "Video semanal, todas las semanas",
           body: "Estrategia de contenido para una agente de bienes raíces en Houston: qué decir, cómo decirlo y a quién llegarle. Reels de comunidades, tips para compradores primerizos y respuesta a mensajes.",
           metric: "PENDIENTE: métrica real",
         },
@@ -212,19 +212,19 @@ export const copy = {
     },
     culture: {
       eyebrow: "Por qué nosotros",
-      title: "Escribimos las campañas ==dos veces==, una en *cada idioma*.",
+      title: "De la grabación al aire en ==cuatro días==, con *equipo propio*.",
       body: [
-        "Un anuncio que jala en inglés y se pasa al español palabra por palabra casi siempre sale raro. El tono cambia, la referencia cambia y la manera de pedir las cosas también.",
-        "En Houston tu cliente contesta el teléfono en español y busca en Google en inglés, o al revés, según el día. Por eso cada versión se piensa aparte.",
+        "La mayoría de las agencias subcontratan la producción. Eso mete dos semanas de ida y vuelta entre que se aprueba una idea y alguien la graba.",
+        "Aquí la cámara, las luces y la edición son nuestras. Grabamos el martes, editamos el miércoles y el viernes la campaña ya está corriendo.",
       ],
       points: [
         {
-          title: "Los dos idiomas, escritos aparte",
-          body: "Nada se traduce. Cada versión se escribe desde cero con la referencia que le toca a ese público.",
+          title: "Un día de grabación rinde un mes",
+          body: "De una sesión salen entre 15 y 20 piezas. Por eso no tienes que estar frente a la cámara cada semana.",
         },
         {
-          title: "La cámara es nuestra",
-          body: "Grabación, edición y color con equipo propio. Por eso una campaña puede estar al aire cuatro días después de la grabación.",
+          title: "Sales tú, no un modelo de banco",
+          body: "La gente le compra a personas. Te dirigimos en cámara aunque nunca hayas grabado, y si de plano no quieres salir, resolvemos con producto.",
         },
         {
           title: "Una sola persona a cargo",
@@ -312,7 +312,7 @@ export const copy = {
     meta: {
       title: "SENI marketing — Content, Ads and strategy in Houston",
       description:
-        "We produce the video, write the message and run the ads. Realtors, creators and Houston businesses, in Spanish and English.",
+        "We produce the video, write the message and run the ads. Realtors, creators and Houston businesses.",
     },
     nav: {
       links: [
@@ -377,8 +377,8 @@ export const copy = {
           body: "After \u201chi, how can I help?\u201d nobody knows what comes next, so every conversation goes differently depending on who's answering.",
         },
         {
-          title: "You post the same thing in English and Spanish, translated",
-          body: "In Houston your client lives in both languages, and a word-for-word translation shows immediately in whichever language you didn't think the message in.",
+          title: "Every month you start from scratch deciding what to post",
+          body: "Without a three-month plan, content gets decided the same day and it shows: rushed, no payoff, and nothing tying it to what came before.",
         },
       ],
       closer: {
@@ -403,7 +403,7 @@ export const copy = {
         },
         {
           title: "We build the message",
-          body: "We pick one promise and how to say it, in both languages. If your offer doesn't fit in a sentence your client gets on the first read, it isn't ready to put money behind.",
+          body: "We pick one promise and how to say it. If your offer doesn't fit in a sentence your client gets on the first read, it isn't ready to put money behind.",
           out: "Message and offer",
         },
         {
@@ -450,7 +450,7 @@ export const copy = {
           name: "Social media",
           benefit: "Your brand shows up every week and you stop inventing posts on Sunday night.",
           detail:
-            "Calendar, copywriting in Spanish and English, publishing, and replies to comments and messages.",
+            "Calendar, copywriting, publishing, and replies to comments and messages.",
         },
         {
           name: "Branding",
@@ -462,7 +462,7 @@ export const copy = {
           name: "Website and landing pages",
           benefit: "The click ends in an appointment instead of a page that takes six seconds to open.",
           detail:
-            "Fast bilingual sites with a form, WhatsApp and tracking wired up from day one.",
+            "Fast sites with a form, WhatsApp and tracking wired up from day one.",
         },
       ],
     },
@@ -481,7 +481,7 @@ export const copy = {
       cases: [
         {
           tag: "Realtor",
-          title: "Weekly video and content in both languages",
+          title: "Weekly video, every single week",
           body: "Content strategy for a Houston real estate agent: what to say, how to say it and who to reach. Community reels, first-time buyer tips and message handling.",
           metric: "TODO: real metric",
         },
@@ -503,19 +503,19 @@ export const copy = {
     },
     culture: {
       eyebrow: "Why us",
-      title: "We write every campaign ==twice==, once in *each language*.",
+      title: "From shoot to live in ==four days==, with *our own gear*.",
       body: [
-        "An ad that lands in English and gets carried word for word into Spanish almost always comes out strange. The tone shifts, the reference shifts, and so does the way you ask for something.",
-        "In Houston your client answers the phone in Spanish and searches Google in English, or the other way around depending on the day. So each version gets thought through separately.",
+        "Most agencies outsource production. That adds two weeks of back and forth between approving an idea and someone actually filming it.",
+        "Here the camera, the lights and the editing are ours. We shoot Tuesday, edit Wednesday, and the campaign is running by Friday.",
       ],
       points: [
         {
-          title: "Both languages, written separately",
-          body: "Nothing gets translated. Each version is written from scratch with the reference that belongs to that audience.",
+          title: "One shoot day covers a month",
+          body: "A single session gives us 15 to 20 pieces. That is why you do not need to be on camera every week.",
         },
         {
-          title: "The camera is ours",
-          body: "Shooting, editing and color with our own gear. That's why a campaign can be live four days after the shoot.",
+          title: "It is you on camera, not a stock model",
+          body: "People buy from people. We direct you even if you have never filmed before, and if you would rather not appear, we build it around the product.",
         },
         {
           title: "One person accountable",

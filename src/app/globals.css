@@ -16,7 +16,7 @@
   --color-sky: #56c7f0;
 
   /* Derivados */
-  --color-void: #0e0b16;
+  --color-void: #150d24;
   --color-bone: #f6f4f2;
 
   --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
@@ -362,13 +362,18 @@ body {
     var(--color-magenta)
   );
   background-size: 200% 100%;
+  /* Sombra de color: separa el boton del fondo morado, que era donde se
+     perdia. */
+  box-shadow: 0 0.75rem 2rem -0.75rem color-mix(in oklab, var(--color-magenta) 70%, transparent);
   transition:
     background-position 0.5s ease,
+    box-shadow 0.3s ease,
     translate 0.25s ease;
 }
 
 .btn-primary:where(:hover):not(:disabled) {
   background-position: 100% 0;
+  box-shadow: 0 1rem 2.5rem -0.75rem color-mix(in oklab, var(--color-magenta) 85%, transparent);
 }
 
 .btn-ghost:where(:hover):not(:disabled) {
