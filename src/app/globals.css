@@ -1,26 +1,1582 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   SENI marketing — sistema de diseno
+   Color y tipografia derivados del manual de marca (presentacion.pdf).
+   ------------------------------------------------------------------ */
+
+@theme {
+  /* Tier 1 — tokens literales del manual */
+  --color-ink: #1a1c21;
+  --color-blue: #3b63e2;
+  --color-magenta: #c31daf;
+  --color-violet: #4d0783;
+  --color-paper: #ffffff;
+  /* El cian ya vive en el degradado del wallpaper de marca */
+  --color-sky: #56c7f0;
+
+  /* Derivados */
+  --color-void: #0b0c11;
+  --color-bone: #f3f3f6;
+
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Tier 2 — tokens semanticos, resueltos por tono de seccion */
+  --surface: var(--color-void);
+  --surface-raised: color-mix(in oklab, var(--color-ink) 88%, white 12%);
+  --text: #ffffff;
+  --text-muted: color-mix(in oklab, #ffffff 62%, var(--color-void));
+  --text-faint: color-mix(in oklab, #ffffff 38%, var(--color-void));
+  --rule: color-mix(in oklab, #ffffff 14%, transparent);
+  --accent: var(--color-magenta);
+
+  /* Ritmo */
+  --gutter: clamp(1.25rem, 0.5rem + 3vw, 5rem);
+  --measure: 62ch;
+  --section-y: clamp(5rem, 3rem + 9vw, 11rem);
+
+  /* Espacio de interpolacion con respaldo para navegadores pre-2024 */
+  --in-oklab: ;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@supports (background: linear-gradient(in oklab, white, black)) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --in-oklab: in oklab;
+  }
+}
+
+/* Secciones claras: mismos tokens, distinto valor. */
+[data-tone="light"] {
+  --surface: var(--color-bone);
+  --surface-raised: #ffffff;
+  --text: var(--color-ink);
+  --text-muted: color-mix(in oklab, var(--color-ink) 68%, white);
+  --text-faint: color-mix(in oklab, var(--color-ink) 42%, white);
+  --rule: color-mix(in oklab, var(--color-ink) 14%, transparent);
+  color-scheme: light;
+}
+
+[data-tone="dark"] {
+  --surface: var(--color-void);
+  --surface-raised: color-mix(in oklab, var(--color-ink) 88%, white 12%);
+  --text: #ffffff;
+  --text-muted: color-mix(in oklab, #ffffff 62%, var(--color-void));
+  --text-faint: color-mix(in oklab, #ffffff 38%, var(--color-void));
+  --rule: color-mix(in oklab, #ffffff 14%, transparent);
+  color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                               */
+/* ------------------------------------------------------------------ */
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  /* El header fijo no debe tapar el destino de los anclajes */
+  scroll-padding-block-start: 6rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-void);
+  -webkit-tap-highlight-color: color-mix(in oklab, var(--color-magenta) 25%, transparent);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
+
+:where(h1, h2, h3, h4) {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+:where(p) {
+  text-wrap: pretty;
+}
+
+:where(a) {
+  color: inherit;
+  text-decoration: none;
+}
+
+:where(a:any-link, button, input, textarea, select, summary):focus-visible {
+  outline: 2px solid var(--color-sky);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--color-magenta);
+  color: #fff;
+}
+
+/* ------------------------------------------------------------------ */
+/* Utilidades del proyecto                                            */
+/* ------------------------------------------------------------------ */
+
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+.shell {
+  width: 100%;
+  max-inline-size: 84rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  background: var(--surface);
+  color: var(--text);
+  padding-block: var(--section-y);
+  position: relative;
+  isolation: isolate;
+}
+
+/* Etiqueta de seccion: hereda el motivo de rayos del isotipo. */
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.eyebrow::before {
+  content: "";
+  inline-size: 1.75rem;
+  block-size: 2px;
+  flex: none;
+  background: linear-gradient(
+    to right var(--in-oklab),
+    var(--color-blue),
+    var(--color-magenta)
+  );
+}
+
+.display {
+  font-size: clamp(2.5rem, 1rem + 6.4vw, 6.5rem);
+  font-weight: 500;
+}
+
+.h2 {
+  font-size: clamp(1.9rem, 1.1rem + 3.2vw, 3.75rem);
+}
+
+.h3 {
+  font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem);
+  line-height: 1.1;
+}
+
+.lede {
+  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.375rem);
+  color: var(--text-muted);
+  max-inline-size: var(--measure);
+}
+
+/* Texto con el degradado de marca. */
+.grad-text {
+  background: linear-gradient(
+    100deg var(--in-oklab),
+    var(--color-sky) 0%,
+    var(--color-blue) 26%,
+    var(--color-violet) 55%,
+    var(--color-magenta) 88%
+  );
+  background-clip: text;
+  color: transparent;
+  /* Sin background-image el texto quedaria invisible en alto contraste */
+  @media (forced-colors: active) {
+    background: none;
+    color: CanvasText;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Aurora — el degradado de marca como luz, no como fondo plano       */
+/* ------------------------------------------------------------------ */
+
+.aurora {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: clip;
+  pointer-events: none;
+}
+
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  inline-size: 60vw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+}
+
+.aurora::before {
+  background: radial-gradient(
+    circle at center,
+    var(--color-blue),
+    transparent 68%
+  );
+  inset-block-start: -22%;
+  inset-inline-start: -14%;
+}
+
+.aurora::after {
+  background: radial-gradient(
+    circle at center,
+    var(--color-magenta),
+    transparent 68%
+  );
+  inset-block-end: -28%;
+  inset-inline-end: -12%;
+}
+
+[data-tone="light"] .aurora::before,
+[data-tone="light"] .aurora::after {
+  opacity: 0.14;
+}
+
+/* ------------------------------------------------------------------ */
+/* Botones                                                            */
+/* ------------------------------------------------------------------ */
+
+.btn {
+  --btn-bg: transparent;
+  --btn-fg: var(--text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-block-size: 3.25rem;
+  padding-inline: 1.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--btn-bg);
+  /* Quita el retardo de 300ms del doble tap. */
+  touch-action: manipulation;
+  color: var(--btn-fg);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    translate 0.25s ease;
+}
+
+.btn:where(:hover):not(:disabled) {
+  translate: 0 -2px;
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    100deg var(--in-oklab),
+    var(--color-blue),
+    var(--color-violet) 52%,
+    var(--color-magenta)
+  );
+  background-size: 200% 100%;
+  transition:
+    background-position 0.5s ease,
+    translate 0.25s ease;
+}
+
+.btn-primary:where(:hover):not(:disabled) {
+  background-position: 100% 0;
+}
+
+.btn-ghost:where(:hover):not(:disabled) {
+  border-color: color-mix(in oklab, var(--text) 45%, transparent);
+}
+
+@media (forced-colors: active) {
+  .btn {
+    border: 1px solid ButtonText;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Revelado en scroll                                                 */
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes rise {
+      from {
+        opacity: 0;
+        translate: 0 2.5rem;
+      }
+    }
+
+    .reveal {
+      animation: rise 1s ease backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 62%;
+    }
+  }
+
+  /* Respaldo por IntersectionObserver (Firefox) — ver Reveal.tsx */
+  .reveal[data-io="pending"] {
+    opacity: 0;
+    translate: 0 2.5rem;
+  }
+
+  .reveal[data-io="shown"] {
+    opacity: 1;
+    translate: 0 0;
+    transition:
+      opacity 0.7s ease,
+      translate 0.7s ease;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Marquesina                                                         */
+/* ------------------------------------------------------------------ */
+
+@keyframes marquee-shift {
+  to {
+    translate: -50% 0;
+  }
+}
+
+.marquee {
+  overflow: clip;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+}
+
+.marquee-track {
+  display: flex;
+  inline-size: max-content;
+  animation: marquee-shift 46s linear infinite;
+}
+
+.marquee-track ul {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 3rem;
+  padding-inline-end: 3rem;
+  margin: 0;
+  padding-block: 0;
+  list-style: none;
+}
+
+.marquee li {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.35rem);
+  font-weight: 300;
+  white-space: nowrap;
+  color: var(--text-faint);
+}
+
+.marquee li::after {
+  content: "";
+  display: inline-block;
+  inline-size: 0.35rem;
+  block-size: 0.35rem;
+  margin-inline-start: 3rem;
+  border-radius: 50%;
+  background: var(--color-magenta);
+  vertical-align: middle;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    mask-image: none;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Encabezado                                                         */
+/* ------------------------------------------------------------------ */
+
+.header {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 60;
+  padding-block: 0.9rem;
+  padding-block-start: max(0.9rem, env(safe-area-inset-top));
+  transition:
+    background-color 0.3s ease,
+    backdrop-filter 0.3s ease,
+    border-color 0.3s ease;
+  border-block-end: 1px solid transparent;
+}
+
+/* Casi opaco a proposito: la barra viaja sobre secciones claras y oscuras,
+   y el logo blanco se perdia sobre las claras. */
+.header[data-scrolled="true"] {
+  background: color-mix(in oklab, var(--color-void) 94%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-block-end-color: color-mix(in oklab, #fff 10%, transparent);
+}
+
+.skip-link:where(:focus-within, :active) {
+  position: fixed;
+  inset-block-start: 0.75rem;
+  inset-inline-start: 0.75rem;
+  z-index: 100;
+  padding: 0.75rem 1.1rem;
+  border-radius: 999px;
+  background: var(--color-ink);
+  color: #fff;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+}
+
+.header-logo {
+  flex: none;
+  display: block;
+  color: #fff;
+}
+
+.header-lockup {
+  block-size: 2rem;
+  inline-size: auto;
+}
+
+.header-nav {
+  margin-inline-end: auto;
+}
+
+.header-nav ul {
+  display: flex;
+  gap: clamp(1rem, 2vw, 2rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-nav a {
+  position: relative;
+  display: inline-block;
+  padding-block: 0.5rem;
+  font-size: 0.95rem;
+  color: color-mix(in oklab, #fff 74%, var(--color-void));
+  transition: color 0.2s ease;
+}
+
+.header-nav a::after {
+  content: "";
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  inline-size: 100%;
+  block-size: 1.5px;
+  background: linear-gradient(
+    to right var(--in-oklab),
+    var(--color-blue),
+    var(--color-magenta)
+  );
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale 0.28s ease;
+}
+
+.header-nav a:where(:hover, :focus-visible) {
+  color: #fff;
+}
+
+.header-nav a:where(:hover, :focus-visible)::after {
+  scale: 1 1;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Selector de idioma: control segmentado con pastilla deslizante. */
+.lang {
+  position: relative;
+  display: flex;
+  padding: 3px;
+  border: 1px solid color-mix(in oklab, #fff 16%, transparent);
+  border-radius: 999px;
+  isolation: isolate;
+}
+
+.lang-pill {
+  position: absolute;
+  inset-block: 3px;
+  inline-size: calc(50% - 3px);
+  border-radius: 999px;
+  background: linear-gradient(
+    100deg var(--in-oklab),
+    var(--color-blue),
+    var(--color-magenta)
+  );
+  transition: translate 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: -1;
+}
+
+.lang-pill[data-pos="es"] {
+  translate: 0 0;
+}
+
+.lang-pill[data-pos="en"] {
+  translate: 100% 0;
+}
+
+.lang-option {
+  min-inline-size: 2.5rem;
+  min-block-size: 1.9rem;
+  padding-inline: 0.5rem;
+  border: 0;
+  background: transparent;
+  color: color-mix(in oklab, #fff 60%, var(--color-void));
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.lang-option[aria-pressed="true"] {
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lang-pill {
+    transition: none;
+  }
+}
+
+.header-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  min-inline-size: 2.75rem;
+  min-block-size: 2.75rem;
+  padding: 0.5rem;
+  border: 1px solid color-mix(in oklab, #fff 16%, transparent);
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.header-burger span {
+  display: block;
+  inline-size: 1.1rem;
+  block-size: 1.5px;
+  margin-inline: auto;
+  background: #fff;
+}
+
+/* Menu movil: popover nativo (Esc y clic fuera gratis). */
+.menu {
+  position: fixed;
+  inset: auto 0 0 0;
+  inline-size: 100%;
+  max-inline-size: none;
+  max-block-size: 80dvh;
+  margin: 0;
+  padding: 1.5rem var(--gutter) max(2.5rem, env(safe-area-inset-bottom));
+  overscroll-behavior: contain;
+  border: 0;
+  border-start-start-radius: 1.5rem;
+  border-start-end-radius: 1.5rem;
+  background: var(--color-ink);
+  color: #fff;
+  overflow: auto;
+}
+
+.menu::backdrop {
+  background: color-mix(in oklab, var(--color-void) 70%, transparent);
+  backdrop-filter: blur(4px);
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+.menu a:not(.btn) {
+  display: block;
+  padding-block: 0.9rem;
+  border-block-end: 1px solid color-mix(in oklab, #fff 12%, transparent);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+}
+
+.menu .btn {
+  inline-size: 100%;
+}
+
+@media (width < 60rem) {
+  .header-nav,
+  .header-cta {
+    display: none;
+  }
+
+  .header-logo {
+    margin-inline-end: auto;
+  }
+
+  .header-burger {
+    display: flex;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero                                                               */
+/* ------------------------------------------------------------------ */
+
+.hero {
+  padding-block-start: clamp(8rem, 16vh, 12rem);
+  padding-block-end: 0;
+  overflow: clip;
+}
+
+.hero-head {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+  align-items: end;
+}
+
+@media (width >= 62rem) {
+  .hero-head {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  }
+
+  .hero-head .eyebrow {
+    grid-column: 1 / -1;
+  }
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  text-wrap: balance;
+  font-size: clamp(2.6rem, 1rem + 5.6vw, 5.75rem);
+  margin-block: 1.25rem 0;
+}
+
+.hero-line {
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes hero-line-in {
+    from {
+      opacity: 0;
+      translate: 0 0.5em;
+    }
+  }
+
+  .hero-title .hero-line {
+    animation: hero-line-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  .hero-title .hero-line:nth-child(2) {
+    animation-delay: 0.12s;
+  }
+}
+
+.hero-aside {
+  display: grid;
+  gap: 1.15rem;
+  padding-block-end: 0.5rem;
+}
+
+.hero-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1rem + 0.7vw, 1.55rem);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: #fff;
+}
+
+/* Los tres servicios con el mismo separador que usa la bio. */
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.hero-chips li:not(:last-child)::after {
+  content: "•";
+  margin-inline-start: 0.55rem;
+  color: var(--color-magenta);
+}
+
+.hero-lede {
+  font-size: 1rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-place,
+.hero-note {
+  font-size: 0.85rem;
+  color: var(--text-faint);
+}
+
+.hero-place::before {
+  content: "";
+  display: inline-block;
+  inline-size: 0.45rem;
+  block-size: 0.45rem;
+  margin-inline-end: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-sky);
+  vertical-align: middle;
+}
+
+/* El globo se corta contra el borde inferior de la seccion, igual que la
+   referencia: se lee como algo mas grande que la pantalla. */
+.hero-globe {
+  margin-block-start: clamp(1.5rem, 4vw, 3.5rem);
+  margin-block-end: calc(clamp(4rem, 9vw, 8rem) * -1);
+  padding-inline: var(--gutter);
+}
+
+.globe {
+  position: relative;
+  inline-size: min(100%, 44rem);
+  margin-inline: auto;
+  aspect-ratio: 1;
+  color: color-mix(in oklab, #fff 34%, transparent);
+  cursor: grab;
+  /* El arrastre horizontal gira el globo; el scroll vertical sigue vivo. */
+  touch-action: pan-y;
+}
+
+.globe[data-dragging] {
+  cursor: grabbing;
+}
+
+.globe-canvas {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  display: block;
+}
+
+/* Nucleo encendido con el degradado de marca, detras de la malla.
+   --mx / --my los mueve el puntero: el cursor hace de fuente de luz. */
+.globe-core {
+  position: absolute;
+  inset: 30%;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at var(--mx, 50%) var(--my, 58%),
+      var(--color-magenta) 0%,
+      color-mix(in oklab, var(--color-magenta) 55%, transparent) 26%,
+      transparent 62%
+    ),
+    radial-gradient(circle at 50% 50%, var(--color-blue) 0%, transparent 72%);
+  filter: blur(26px);
+  opacity: 0.95;
+  transition: background-position 0.2s ease;
+}
+
+.globe-arc {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+  opacity: 0.55;
+}
+
+.globe-labels {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.globe-labels li {
+  position: absolute;
+  translate: -50% -50%;
+  padding-inline: 0.7rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.8rem, 0.68rem + 0.4vw, 1.05rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: color-mix(in oklab, #fff 78%, var(--color-void));
+  transition: color 0.25s ease;
+}
+
+/* Rayo del rotulo hacia el globo: el motivo del isotipo, al pasar el cursor. */
+.globe-labels li::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: 4.5rem;
+  block-size: 1px;
+  transform-origin: left center;
+  rotate: var(--ray);
+  background: linear-gradient(
+    to right var(--in-oklab),
+    var(--color-magenta),
+    transparent
+  );
+  scale: 0 1;
+  transition: scale 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.globe-labels li:where(:hover) {
+  color: #fff;
+}
+
+.globe-labels li:where(:hover)::after {
+  scale: 1 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .globe-labels li::after,
+  .globe-core {
+    transition: none;
+  }
+}
+
+@media (width < 48rem) {
+  .globe {
+    inline-size: min(122%, 30rem);
+    margin-inline-start: -11%;
+  }
+
+  .globe-labels li {
+    font-size: 0.72rem;
+    padding-inline: 0.4rem;
+  }
+
+  .globe-labels li::after {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Franja y cabeceras de seccion                                      */
+/* ------------------------------------------------------------------ */
+
+.band {
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+  border-block: 1px solid var(--rule);
+}
+
+.section-head {
+  max-inline-size: 46rem;
+  margin-block-end: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.section-head .h2 {
+  margin-block: 1rem 1.25rem;
+}
+
+.placeholder-note {
+  margin-block-start: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+/* ------------------------------------------------------------------ */
+/* Problemas                                                          */
+/* ------------------------------------------------------------------ */
+
+.problem-list {
+  display: grid;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-block-start: 1px solid var(--rule);
+}
+
+.problem {
+  display: grid;
+  gap: 0.5rem 3rem;
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  border-block-end: 1px solid var(--rule);
+}
+
+@media (width >= 48rem) {
+  .problem {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    align-items: baseline;
+  }
+}
+
+.problem p {
+  color: var(--text-muted);
+  max-inline-size: var(--measure);
+}
+
+.problem-closer {
+  margin-block-start: clamp(2.5rem, 5vw, 4rem);
+  max-inline-size: 46rem;
+}
+
+.problem-closer-lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-block-end: 0.75rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Sistema                                                            */
+/* ------------------------------------------------------------------ */
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: none;
+}
+
+.step {
+  display: grid;
+  gap: 0.5rem 2rem;
+  padding-block: clamp(1.75rem, 3vw, 2.5rem);
+  border-block-start: 1px solid var(--rule);
+  align-items: start;
+}
+
+@media (width >= 52rem) {
+  .step {
+    grid-template-columns: 5rem minmax(0, 1fr) 14rem;
+  }
+}
+
+.step-index {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1;
+  background: linear-gradient(
+    140deg var(--in-oklab),
+    var(--color-sky),
+    var(--color-magenta)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+@media (forced-colors: active) {
+  .step-index {
+    background: none;
+    color: CanvasText;
+  }
+}
+
+.step-body p {
+  margin-block-start: 0.6rem;
+  color: var(--text-muted);
+  max-inline-size: var(--measure);
+}
+
+.step-out {
+  align-self: start;
+  justify-self: start;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+@media (width >= 52rem) {
+  .step-out {
+    justify-self: end;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Servicios                                                          */
+/* ------------------------------------------------------------------ */
+
+.service-grid {
+  display: grid;
+  gap: 1px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 1.25rem;
+  overflow: clip;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+}
+
+.service {
+  position: relative;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--surface-raised);
+  transition: background-color 0.3s ease;
+}
+
+.service:where(:hover) {
+  background: color-mix(in oklab, var(--surface-raised) 92%, var(--color-blue));
+}
+
+.service-mark {
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  margin-block-end: 1.25rem;
+  color: var(--color-magenta);
+  opacity: 0.9;
+}
+
+.service-benefit {
+  margin-block: 0.75rem 0.75rem;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.service-detail {
+  font-size: 0.925rem;
+  color: var(--text-faint);
+}
+
+/* ------------------------------------------------------------------ */
+/* Resultados                                                         */
+/* ------------------------------------------------------------------ */
+
+.stats {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+}
+
+.stat {
+  padding-block-start: 1.25rem;
+  border-block-start: 1px solid var(--rule);
+}
+
+.stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 2rem + 3.5vw, 4.75rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+  display: block;
+  margin-block-start: 0.75rem;
+  font-size: 0.925rem;
+  color: var(--text-muted);
+}
+
+.cases {
+  display: grid;
+  gap: 1.25rem;
+  list-style: none;
+  margin-block-start: clamp(3rem, 6vw, 5rem);
+  padding: 0;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+}
+
+.case {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid var(--rule);
+  border-radius: 1.25rem;
+  background: color-mix(in oklab, var(--surface-raised) 60%, transparent);
+}
+
+.case-tag {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-sky);
+}
+
+.case p {
+  color: var(--text-muted);
+}
+
+.case-metric {
+  margin-block-start: auto;
+  padding-block-start: 1rem;
+  border-block-start: 1px solid var(--rule);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--text) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* Cultura                                                            */
+/* ------------------------------------------------------------------ */
+
+.culture-grid {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: start;
+}
+
+@media (width >= 60rem) {
+  .culture-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  }
+}
+
+.culture-copy .h2 {
+  margin-block: 1rem 1.5rem;
+}
+
+.culture-copy .lede + .lede {
+  margin-block-start: 1rem;
+}
+
+.culture-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.culture-point {
+  padding-block: 1.5rem;
+  border-block-start: 1px solid var(--rule);
+}
+
+.culture-point p {
+  margin-block-start: 0.5rem;
+  color: var(--text-muted);
+}
+
+/* ------------------------------------------------------------------ */
+/* Testimonios                                                        */
+/* ------------------------------------------------------------------ */
+
+.quotes {
+  display: grid;
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+}
+
+.quote figure {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  block-size: 100%;
+  margin: 0;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid var(--rule);
+  border-radius: 1.25rem;
+  background: var(--surface-raised);
+}
+
+.quote blockquote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.quote blockquote::before {
+  content: "";
+  display: block;
+  inline-size: 2rem;
+  block-size: 2px;
+  margin-block-end: 1.25rem;
+  background: linear-gradient(
+    to right var(--in-oklab),
+    var(--color-blue),
+    var(--color-magenta)
+  );
+}
+
+.quote figcaption {
+  margin-block-start: auto;
+  display: grid;
+  gap: 0.15rem;
+  font-size: 0.9rem;
+}
+
+.quote-name {
+  font-weight: 500;
+}
+
+.quote-role {
+  color: var(--text-faint);
+}
+
+/* ------------------------------------------------------------------ */
+/* Contacto                                                           */
+/* ------------------------------------------------------------------ */
+
+.contact-grid {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+@media (width >= 62rem) {
+  .contact-grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+}
+
+.contact-copy .h2 {
+  margin-block: 1rem 1.25rem;
+}
+
+.contact-bullets {
+  margin-block-start: 2rem;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.contact-bullets li {
+  position: relative;
+  padding-inline-start: 1.75rem;
+  color: var(--text-muted);
+}
+
+.contact-bullets li::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0.6em;
+  inset-inline-start: 0;
+  inline-size: 0.85rem;
+  block-size: 2px;
+  background: linear-gradient(
+    to right var(--in-oklab),
+    var(--color-blue),
+    var(--color-magenta)
+  );
+}
+
+.contact-form {
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid var(--rule);
+  border-radius: 1.5rem;
+  background: color-mix(in oklab, var(--color-ink) 70%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+@media (width >= 40rem) {
+  .contact-form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field-wide {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.field :where(input, select, textarea) {
+  inline-size: 100%;
+  min-block-size: 3rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 0.75rem;
+  background: color-mix(in oklab, var(--color-void) 60%, transparent);
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.field textarea {
+  resize: vertical;
+  min-block-size: 7rem;
+}
+
+.field :where(input, select, textarea):where(:hover) {
+  border-color: color-mix(in oklab, #fff 26%, transparent);
+}
+
+.field ::placeholder {
+  color: var(--text-faint);
+}
+
+/* Solo marcamos error despues de que la persona interactuo con el campo. */
+.field :where(input, textarea):user-invalid {
+  border-color: #ff6b8a;
+}
+
+.honeypot {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.contact-submit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-privacy {
+  flex: 1 1 14rem;
+  font-size: 0.8rem;
+  color: var(--text-faint);
+}
+
+.form-status {
+  min-block-size: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.form-status[data-state="sent"] {
+  color: var(--color-sky);
+}
+
+.form-status[data-state="error"] {
+  color: #ff6b8a;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+/* ------------------------------------------------------------------ */
+/* Pie                                                                */
+/* ------------------------------------------------------------------ */
+
+.footer {
+  padding-block: clamp(3.5rem, 6vw, 6rem) 2rem;
+  border-block-start: 1px solid var(--rule);
+}
+
+.footer-grid {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+}
+
+.footer-brand {
+  grid-column: 1 / -1;
+  max-inline-size: 24rem;
+}
+
+@media (width >= 60rem) {
+  .footer-grid {
+    grid-template-columns: 1.6fr repeat(3, 1fr);
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
+}
+
+.footer-lockup {
+  block-size: 2.25rem;
+  inline-size: auto;
+  margin-block-end: 1.25rem;
+  color: #fff;
+}
+
+.footer-brand p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.footer-heading {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-block-end: 1rem;
+}
+
+.footer-col ul {
+  display: grid;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.footer-col a {
+  transition: color 0.2s ease;
+}
+
+.footer-col a:where(:hover, :focus-visible) {
+  color: #fff;
+}
+
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-block-start: clamp(2.5rem, 5vw, 4rem);
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid var(--rule);
+  font-size: 0.8rem;
+  color: var(--text-faint);
+}
+
+/* ------------------------------------------------------------------ */
+/* Cita destacada                                                     */
+/* ------------------------------------------------------------------ */
+
+.pullquote {
+  padding-block: clamp(4rem, 8vw, 8rem);
+  border-block: 1px solid var(--rule);
+}
+
+.pullquote figure {
+  margin: 0;
+  max-inline-size: 52rem;
+}
+
+.pullquote blockquote {
+  margin: 0;
+}
+
+.pullquote-text {
+  font-size: clamp(1.75rem, 1rem + 3.6vw, 4rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.pullquote-text::before {
+  content: "«";
+  color: var(--color-magenta);
+  margin-inline-end: 0.1em;
+}
+
+.pullquote-text::after {
+  content: "»";
+  color: var(--color-magenta);
+  margin-inline-start: 0.1em;
+}
+
+.pullquote figcaption {
+  margin-block-start: 1.75rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* Cada tarjeta toma un punto distinto del degradado: seis iconos identicos
+   en fila se leian como un relleno. */
+.service:nth-child(6n + 1) .service-mark { color: var(--color-sky); }
+.service:nth-child(6n + 2) .service-mark { color: var(--color-blue); }
+.service:nth-child(6n + 3) .service-mark { color: color-mix(in oklab, var(--color-blue), var(--color-violet)); }
+.service:nth-child(6n + 4) .service-mark { color: color-mix(in oklab, var(--color-violet) 60%, var(--color-magenta)); }
+.service:nth-child(6n + 5) .service-mark { color: color-mix(in oklab, var(--color-magenta) 80%, var(--color-violet)); }
+.service:nth-child(6n + 6) .service-mark { color: var(--color-magenta); }
