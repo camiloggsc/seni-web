@@ -228,27 +228,24 @@ export const copy = {
       casesNote:
         "Casos basados en trabajo real de @seni.marketing. Antes de publicar: pide autorización por escrito para usar el nombre de cada cliente y sustituye las métricas.",
     },
+    // Manifiesto: tres golpes cortos a escala grande, no un párrafo con lista.
     culture: {
       eyebrow: "Por qué nosotros",
-      title: "De la grabación al aire en ==cuatro días==, con *equipo propio*.",
-      body: [
-        "La mayoría de las agencias subcontratan la producción. Eso mete dos semanas de ida y vuelta entre que se aprueba una idea y alguien la graba.",
-        "Aquí la cámara, las luces y la edición son nuestras. Grabamos el martes, editamos el miércoles y el viernes la campaña ya está corriendo.",
-      ],
-      points: [
+      beats: [
         {
-          title: "Un día de grabación rinde un mes",
-          body: "De una sesión salen entre 15 y 20 piezas. Por eso no tienes que estar frente a la cámara cada semana.",
+          line: "Grabamos nosotros.",
+          note: "Cámara, luces y edición con equipo propio. Nada se subcontrata, así que nada espera turno.",
         },
         {
-          title: "Sales tú, no un modelo de banco",
-          body: "La gente le compra a personas. Te dirigimos en cámara aunque nunca hayas grabado, y si de plano no quieres salir, resolvemos con producto.",
+          line: "Escribimos nosotros.",
+          note: "El guion sale del mismo lado que la campaña. Por eso el reel y el anuncio cuentan la misma historia.",
         },
         {
-          title: "Una sola persona a cargo",
-          body: "La misma persona que te contesta el mensaje responde por todo el trabajo. No vas a explicar tu negocio cinco veces.",
+          line: "Y te decimos qué pasó.",
+          note: "Un reporte al mes con lo que se invirtió y lo que entró. Sin capturas de alcance.",
         },
       ],
+      closer: "Una sola persona te contesta y responde por todo el trabajo. No vas a explicar tu negocio cinco veces.",
     },
     testimonials: {
       eyebrow: "Clientes",
@@ -515,25 +512,21 @@ export const copy = {
     },
     culture: {
       eyebrow: "Why us",
-      title: "From shoot to live in ==four days==, with *our own gear*.",
-      body: [
-        "Most agencies outsource production. That adds two weeks of back and forth between approving an idea and someone actually filming it.",
-        "Here the camera, the lights and the editing are ours. We shoot Tuesday, edit Wednesday, and the campaign is running by Friday.",
-      ],
-      points: [
+      beats: [
         {
-          title: "One shoot day covers a month",
-          body: "A single session gives us 15 to 20 pieces. That is why you do not need to be on camera every week.",
+          line: "We shoot it.",
+          note: "Camera, lights and editing with our own gear. Nothing gets outsourced, so nothing waits in line.",
         },
         {
-          title: "It is you on camera, not a stock model",
-          body: "People buy from people. We direct you even if you have never filmed before, and if you would rather not appear, we build it around the product.",
+          line: "We write it.",
+          note: "The script comes from the same place as the campaign. That is why the reel and the ad tell one story.",
         },
         {
-          title: "One person accountable",
-          body: "The same person who answers your message owns the whole job. You won't explain your business five times.",
+          line: "And we tell you what happened.",
+          note: "One report a month with what went in and what came back. No screenshots of reach.",
         },
       ],
+      closer: "One person answers you and owns the whole job. You will not explain your business five times.",
     },
     testimonials: {
       eyebrow: "Clients",

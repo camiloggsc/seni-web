@@ -2,34 +2,37 @@
 
 import Reveal from "../Reveal";
 import { useLang } from "../LangProvider";
-import Rich from "../Rich";
 
+/**
+ * Manifiesto.
+ *
+ * Antes era título a la izquierda y lista de tres a la derecha, igual que la
+ * sección del problema. Dos secciones con la misma forma hacían la página
+ * plana. Aquí el texto crece hasta ser el elemento gráfico y las líneas se
+ * escalonan, para que haya un momento de escala en todo el recorrido.
+ */
 export default function Culture() {
   const { t } = useLang();
 
   return (
-    <section className="section culture" data-tone="light" id="nosotros">
-      <div className="shell culture-grid">
-        <Reveal className="culture-copy">
-          <p className="eyebrow">{t.culture.eyebrow}</p>
-          <h2 className="h2">
-            <Rich text={t.culture.title} />
-          </h2>
-          {t.culture.body.map((para, i) => (
-            <p className="lede" key={i}>
-              {para}
-            </p>
-          ))}
+    <section className="section manifesto" data-tone="light" id="nosotros">
+      <div className="shell">
+        <Reveal as="p" className="eyebrow">
+          {t.culture.eyebrow}
         </Reveal>
 
-        <ul className="culture-points">
-          {t.culture.points.map((point, i) => (
-            <Reveal as="li" key={i} className="culture-point" delay={i * 80}>
-              <h3 className="h3">{point.title}</h3>
-              <p>{point.body}</p>
+        <ol className="beats">
+          {t.culture.beats.map((beat, i) => (
+            <Reveal as="li" key={i} className="beat" delay={i * 90}>
+              <h2 className="beat-line">{beat.line}</h2>
+              <p className="beat-note">{beat.note}</p>
             </Reveal>
           ))}
-        </ul>
+        </ol>
+
+        <Reveal as="p" className="beats-closer">
+          {t.culture.closer}
+        </Reveal>
       </div>
     </section>
   );
