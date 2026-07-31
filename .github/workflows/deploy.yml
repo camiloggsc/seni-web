@@ -35,6 +35,10 @@ jobs:
           # del fallo en vez de fingir que se envio.
           NEXT_PUBLIC_FORM_ENDPOINT: ${{ vars.NEXT_PUBLIC_FORM_ENDPOINT }}
 
+      # OJO: no agregar public/CNAME. En despliegues por Actions el dominio
+      # vive en Settings > Pages. Si el CNAME viaja en el artefacto, cada
+      # despliegue lo reaplica y reinicia la emision del certificado HTTPS,
+      # que se queda en bucle bad_authz sin salir nunca.
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
