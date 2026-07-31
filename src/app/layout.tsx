@@ -35,7 +35,9 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: copy.es.meta.title,
+  // La pestaña solo lleva el nombre. La descripción sigue cargando las
+  // palabras que importan para buscadores.
+  title: "SENI Marketing",
   description: copy.es.meta.description,
   applicationName: "SENI marketing",
   openGraph: {
