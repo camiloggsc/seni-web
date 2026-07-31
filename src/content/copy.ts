@@ -11,6 +11,25 @@ export type Lang = "es" | "en";
  *
  * Los valores marcados con TODO son marcadores: reemplázalos con datos reales
  * antes de publicar.
+ *
+ * ─────────────────────────────────────────────────────────────────────────
+ * CONFIRMAR CON YAIMA ANTES DE PROMOCIONAR EL SITIO
+ *
+ * Estas cifras las puse yo para que el copy fuera concreto, pero son
+ * PROMESAS que el cliente va a exigir. Si no coinciden con cómo trabaja
+ * SENI de verdad, hay que cambiarlas o quitarlas:
+ *
+ *   · "Una llamada de 45 minutos"          → system.steps[0], contact.bullets
+ *   · "Diagnóstico por escrito en 3 días"  → contact.bullets
+ *   · "Entre 15 y 20 piezas por sesión"    → system.steps[2], culture.points[0]
+ *   · "Contestamos el mismo día"           → hero.note
+ *   · "Al aire cuatro días después"        → culture.title y culture.body
+ *
+ * Lo mismo aplica a los problemas de la sección "El problema": están
+ * escritos desde la tríada que SENI publicó ("qué decir, cómo decirlo y a
+ * quién llegarle"), pero lo que de verdad cuentan los clientes en la
+ * primera llamada solo lo sabe quien las toma.
+ * ─────────────────────────────────────────────────────────────────────────
  */
 export const copy = {
   es: {
@@ -66,33 +85,29 @@ export const copy = {
         "Servicios profesionales",
       ],
     },
+    // Los tres ejes salen textuales de un caption de @seni.marketing:
+    // "es entender qué decir, cómo decirlo y a quién llegarle".
+    // PENDIENTE: cuando Yaima diga qué le cuentan los clientes en la primera
+    // llamada, esos testimonios reemplazan los cuerpos de abajo.
     problems: {
-      eyebrow: "Lo que te dijeron",
-      title: "Todo lo que te dijeron que hicieras, *ya lo hiciste*.",
+      eyebrow: "El problema",
+      title: "Qué decir, cómo decirlo y *a quién llegarle*.",
       items: [
         {
-          title: "«Publica todos los días»",
-          body: "Llevas ocho meses cumpliendo el calendario. Los mensajes que llegan son de gente que ni compra ni vende.",
+          title: "Qué decir",
+          body: "La mayoría de las cuentas publican lo que el negocio hace. Casi ninguna dice qué gana el cliente si compra, y esa es la frase que decide.",
         },
         {
-          title: "«Métele dinero a los anuncios»",
-          body: "Te pasaron el reporte con impresiones e interacciones, y nadie te supo decir cuánto costó cada lead que sí contestó el teléfono.",
+          title: "Cómo decirlo",
+          body: "El mismo mensaje rinde distinto en un reel, en un anuncio y en una llamada. Elegir mal el formato desperdicia una idea que sí servía.",
         },
         {
-          title: "«Grábalo con el celular, se ve más real»",
-          body: "Real, sí. Pero sale cuando se puede y con la luz que haya, y por eso unas semanas te ven mil personas y otras cien.",
-        },
-        {
-          title: "«Contesta rápido los mensajes»",
-          body: "Contestas en dos minutos. Después del «hola, ¿en qué te ayudo?» nadie sabe qué sigue, así que cada conversación termina distinta.",
-        },
-        {
-          title: "«Lo importante es ser constante»",
-          body: "Llevas un año siendo constante sin un plan de tres meses, y el contenido se sigue decidiendo el mismo día que se sube.",
+          title: "A quién llegarle",
+          body: "Llegarle a todo Houston cuesta caro y convierte poco. La segmentación decide cuánto pagas por cada persona que sí te iba a comprar.",
         },
       ],
       closer: {
-        lead: "Ninguno de esos consejos está mal. Están sueltos.",
+        lead: "Los tres tienen que apuntar al mismo lado.",
         body: "El mensaje lo escribe uno, el video lo graba otro y los ads los corre un tercero. Esas tres personas nunca se sentaron a hablar entre sí, y así cada quien entrega bien lo suyo mientras el negocio no se mueve.",
       },
     },
@@ -362,32 +377,24 @@ export const copy = {
       ],
     },
     problems: {
-      eyebrow: "What you were told",
-      title: "You already did *everything they told you to do*.",
+      eyebrow: "The problem",
+      title: "What to say, how to say it and *who to reach*.",
       items: [
         {
-          title: "\u201cPost every day\u201d",
-          body: "Eight months of hitting the calendar. The messages coming in are from people who aren\u2019t buying or selling anything.",
+          title: "What to say",
+          body: "Most accounts post what the business does. Almost none say what the customer gets out of buying, and that is the line that decides.",
         },
         {
-          title: "\u201cPut money behind the ads\u201d",
-          body: "They sent the report full of impressions and engagement, and nobody could tell you what each lead who actually picked up the phone cost you.",
+          title: "How to say it",
+          body: "The same message lands differently in a reel, in an ad and on a call. Picking the wrong format wastes an idea that was working.",
         },
         {
-          title: "\u201cShoot it on your phone, it looks more real\u201d",
-          body: "Real, sure. But it happens when it can and in whatever light you get, which is why some weeks a thousand people see you and other weeks a hundred do.",
-        },
-        {
-          title: "\u201cAnswer messages fast\u201d",
-          body: "You answer in two minutes. After \u201chi, how can I help?\u201d nobody knows what comes next, so every conversation ends differently.",
-        },
-        {
-          title: "\u201cJust stay consistent\u201d",
-          body: "You\u2019ve been consistent for a year without a three-month plan, and content still gets decided the same day it goes up.",
+          title: "Who to reach",
+          body: "Reaching all of Houston costs a lot and converts little. Targeting decides what you pay for each person who was going to buy anyway.",
         },
       ],
       closer: {
-        lead: "None of that advice is wrong. It is just loose.",
+        lead: "All three have to point the same way.",
         body: "One person writes the message, another shoots the video, a third runs the ads. Those three have never sat in a room together, so each one delivers their piece fine while the business stays put.",
       },
     },
