@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useLang } from "../LangProvider";
 import Rich from "../Rich";
+import Viewfinder from "../Viewfinder";
 
 // El globo solo existe en el cliente: es puro WebGL y no aporta nada al HTML.
 const ServiceGlobe = dynamic(() => import("../ServiceGlobe"), { ssr: false });
@@ -52,7 +53,9 @@ export default function Hero() {
       </div>
 
       <div className="hero-globe">
-        <ServiceGlobe services={t.hero.globe} label={t.hero.globeAlt} />
+        <Viewfinder status={t.hero.frameStatus} place={t.hero.framePlace}>
+          <ServiceGlobe services={t.hero.globe} label={t.hero.globeAlt} />
+        </Viewfinder>
       </div>
     </section>
   );

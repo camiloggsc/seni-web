@@ -49,6 +49,9 @@ export const copy = {
       globe: ["Content", "Paid Ads", "Strategy", "Social Media", "Branding"],
       globeAlt:
         "Animación: un globo de malla girando, con los servicios de SENI dispuestos en arco alrededor.",
+      // El isotipo es un marco con rayos: la página se ve por el visor.
+      frameStatus: "En cuadro",
+      framePlace: "Houston, TX",
     },
     marquee: {
       label: "Con quién trabajamos",
@@ -342,6 +345,8 @@ export const copy = {
       globe: ["Content", "Paid Ads", "Strategy", "Social Media", "Branding"],
       globeAlt:
         "Animation: a rotating wireframe globe with SENI's services arranged in an arc around it.",
+      frameStatus: "In frame",
+      framePlace: "Houston, TX",
     },
     marquee: {
       label: "Who we work with",
