@@ -6,6 +6,15 @@ import { useLang } from "../LangProvider";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
+/**
+ * El sitio es estatico, asi que el formulario va directo a un servicio de
+ * formularios (Web3Forms, Formspree, Zapier...). La URL se define al compilar
+ * con NEXT_PUBLIC_FORM_ENDPOINT. Si falta, el envio falla a proposito y la
+ * persona ve el aviso para escribir por Instagram: peor seria decirle "listo,
+ * ya nos llego" y que el mensaje no exista en ningun lado.
+ */
+const ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
+
 export default function Contact() {
   const { t, lang } = useLang();
   const [status, setStatus] = useState<Status>("idle");
@@ -14,14 +23,29 @@ export default function Contact() {
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    // La trampa solo la llena un bot: fingimos exito y no mandamos nada.
+    if (typeof data["company-url"] === "string" && data["company-url"].length > 0) {
+      form.reset();
+      setStatus("sent");
+      return;
+    }
+
+    if (!ENDPOINT) {
+      setStatus("error");
+      return;
+    }
+
     setStatus("sending");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          ...Object.fromEntries(new FormData(form).entries()),
+          ...data,
           lang,
+          subject: `Nueva solicitud de evaluacion — ${data.business ?? ""}`,
         }),
       });
       if (!res.ok) throw new Error(String(res.status));
