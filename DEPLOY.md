@@ -16,18 +16,21 @@ Hazlo **antes** de publicar. Sin esto el formulario devuelve error.
 El sitio manda un JSON con: `name`, `business`, `email`, `phone`, `budget`,
 `goal`, `lang`, `receivedAt`.
 
-## 2. Subir el sitio
+## 2. Conectar el repo a Netlify
+
+El código vive en **https://github.com/camiloggsc/seni-web** (privado).
 
 Desde esta carpeta, en la terminal:
 
 ```bash
-npx netlify-cli login      # abre el navegador, crea cuenta gratis
-npx netlify-cli init       # crea el sitio, detecta Next.js solo
-npx netlify-cli deploy --prod
+npx netlify-cli login   # abre el navegador, crea cuenta gratis
+npx netlify-cli init    # elige "Create & configure a new site"
 ```
 
-Netlify detecta Next.js sin configuración. El plan gratis permite uso
-comercial, que es el caso de SENI.
+Netlify detecta Next.js sin configuración y queda enlazado al repo, así que
+**cada `git push` a `main` republica el sitio solo**.
+
+El plan gratis de Netlify permite uso comercial, que es el caso de SENI.
 
 > Vercel también funciona (`npx vercel`) y es la plataforma nativa de
 > Next.js, pero su plan gratis (Hobby) es solo para proyectos personales
