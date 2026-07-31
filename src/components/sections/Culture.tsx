@@ -2,6 +2,7 @@
 
 import Reveal from "../Reveal";
 import { useLang } from "../LangProvider";
+import Rich from "../Rich";
 
 export default function Culture() {
   const { t } = useLang();
@@ -11,7 +12,9 @@ export default function Culture() {
       <div className="shell culture-grid">
         <Reveal className="culture-copy">
           <p className="eyebrow">{t.culture.eyebrow}</p>
-          <h2 className="h2">{t.culture.title}</h2>
+          <h2 className="h2">
+            <Rich text={t.culture.title} />
+          </h2>
           {t.culture.body.map((para, i) => (
             <p className="lede" key={i}>
               {para}

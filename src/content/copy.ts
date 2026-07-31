@@ -37,7 +37,7 @@ export const copy = {
     hero: {
       eyebrow: "Agencia de marketing",
       titleLead: "Ayudamos negocios",
-      titleAccent: "a crecer online.",
+      titleAccent: "a *crecer online*.",
       tagline: "Marketing que conecta y convierte",
       chips: ["Content", "Paid Ads", "Strategy"],
       place: "Houston · Social Media & Branding",
@@ -65,7 +65,7 @@ export const copy = {
     },
     problems: {
       eyebrow: "Lo que nos cuentan",
-      title: "Cosas que oímos casi todas las semanas en Houston.",
+      title: "Cosas que oímos *casi todas las semanas* en Houston.",
       items: [
         {
           title: "Subes reels casi diario y el teléfono no suena",
@@ -100,7 +100,7 @@ export const copy = {
     },
     system: {
       eyebrow: "Cómo trabajamos",
-      title: "Qué pasa desde que nos escribes hasta el primer reporte.",
+      title: "Qué pasa desde que nos escribes hasta el *primer reporte*.",
       lede: "La primera semana no grabamos nada. Necesitamos entender qué vendes y a quién antes de decidir cómo se ve.",
       steps: [
         {
@@ -132,7 +132,7 @@ export const copy = {
     },
     services: {
       eyebrow: "Servicios",
-      title: "En qué te podemos ayudar.",
+      title: "En qué te podemos *ayudar*.",
       lede: "Contrata lo que te haga falta. Si nos pides algo que a nuestro juicio todavía no vas a necesitar, te lo decimos antes de cotizarlo.",
       items: [
         {
@@ -175,7 +175,7 @@ export const copy = {
     },
     results: {
       eyebrow: "Trabajo",
-      title: "Con quién hemos trabajado.",
+      title: "Con quién *hemos trabajado*.",
       lede: "Comparamos cada cuenta contra cómo estaba el mes que llegamos. Ese es el único punto de partida que los dos podemos verificar.",
       // TODO: SENI es una operación joven. No publiques estas cifras hasta que
       // salgan de tus propios reportes de Meta/Google. Inventarlas es un riesgo real.
@@ -212,7 +212,7 @@ export const copy = {
     },
     culture: {
       eyebrow: "Por qué nosotros",
-      title: "Escribimos las campañas dos veces, una en cada idioma.",
+      title: "Escribimos las campañas ==dos veces==, una en *cada idioma*.",
       body: [
         "Un anuncio que jala en inglés y se pasa al español palabra por palabra casi siempre sale raro. El tono cambia, la referencia cambia y la manera de pedir las cosas también.",
         "En Houston tu cliente contesta el teléfono en español y busca en Google en inglés, o al revés, según el día. Por eso cada versión se piensa aparte.",
@@ -234,7 +234,7 @@ export const copy = {
     },
     testimonials: {
       eyebrow: "Clientes",
-      title: "Lo que dicen los que ya trabajan con nosotros.",
+      title: "Lo que dicen los que *ya trabajan* con nosotros.",
       // TODO: sustituir por testimonios reales con autorización por escrito.
       note: "PENDIENTE: reemplazar con citas reales de tus clientes y su autorización por escrito.",
       items: [
@@ -257,7 +257,7 @@ export const copy = {
     },
     contact: {
       eyebrow: "Let's get started",
-      title: "Cuéntanos qué traes entre manos.",
+      title: "Cuéntanos *qué traes entre manos*.",
       lede: "Revisamos lo que ya tienes (redes, ads, sitio, medición) y te decimos qué arreglaríamos primero. Sale gratis y no queda ningún compromiso de contratarnos.",
       bullets: [
         "Una llamada de 45 minutos",
@@ -330,7 +330,7 @@ export const copy = {
     hero: {
       eyebrow: "Marketing agency",
       titleLead: "We help businesses",
-      titleAccent: "grow online.",
+      titleAccent: "*grow online*.",
       tagline: "Marketing that connects and converts",
       chips: ["Content", "Paid Ads", "Strategy"],
       place: "Houston · Social Media & Branding",
@@ -358,7 +358,7 @@ export const copy = {
     },
     problems: {
       eyebrow: "What we hear",
-      title: "Things people tell us almost every week in Houston.",
+      title: "Things people tell us *almost every week* in Houston.",
       items: [
         {
           title: "You post reels almost daily and the phone stays quiet",
@@ -393,7 +393,7 @@ export const copy = {
     },
     system: {
       eyebrow: "How we work",
-      title: "What happens between your first message and the first report.",
+      title: "What happens between your first message and the *first report*.",
       lede: "We shoot nothing the first week. We need to know what you sell and who buys it before we decide how any of it looks.",
       steps: [
         {
@@ -425,7 +425,7 @@ export const copy = {
     },
     services: {
       eyebrow: "Services",
-      title: "What we can help you with.",
+      title: "What we can *help you* with.",
       lede: "Hire whatever you actually need. If you ask for something we think you don't need yet, we say so before we quote it.",
       items: [
         {
@@ -468,7 +468,7 @@ export const copy = {
     },
     results: {
       eyebrow: "Work",
-      title: "Who we've worked with.",
+      title: "Who we've *worked with*.",
       lede: "We compare each account against where it stood the month we arrived. That's the only starting point both of us can verify.",
       stats: [
         { value: 0, suffix: "x", label: "Return on ad spend" },
@@ -503,7 +503,7 @@ export const copy = {
     },
     culture: {
       eyebrow: "Why us",
-      title: "We write every campaign twice, once in each language.",
+      title: "We write every campaign ==twice==, once in *each language*.",
       body: [
         "An ad that lands in English and gets carried word for word into Spanish almost always comes out strange. The tone shifts, the reference shifts, and so does the way you ask for something.",
         "In Houston your client answers the phone in Spanish and searches Google in English, or the other way around depending on the day. So each version gets thought through separately.",
@@ -525,7 +525,7 @@ export const copy = {
     },
     testimonials: {
       eyebrow: "Clients",
-      title: "What the people already working with us say.",
+      title: "What the people *already working with us* say.",
       note: "TODO: replace with real client quotes and written approval.",
       items: [
         {
@@ -547,7 +547,7 @@ export const copy = {
     },
     contact: {
       eyebrow: "Let's get started",
-      title: "Tell us what you're working on.",
+      title: "Tell us *what you're working on*.",
       lede: "We go through what you already have (social, ads, site, tracking) and tell you what we'd fix first. It's free and it doesn't commit you to hiring us.",
       bullets: [
         "A 45-minute call",

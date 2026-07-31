@@ -2,6 +2,7 @@
 
 import Reveal from "../Reveal";
 import { useLang } from "../LangProvider";
+import Rich from "../Rich";
 import { Mark } from "../brand/Logo";
 
 export default function Services() {
@@ -12,7 +13,9 @@ export default function Services() {
       <div className="shell">
         <Reveal as="header" className="section-head">
           <p className="eyebrow">{t.services.eyebrow}</p>
-          <h2 className="h2">{t.services.title}</h2>
+          <h2 className="h2">
+            <Rich text={t.services.title} />
+          </h2>
           <p className="lede">{t.services.lede}</p>
         </Reveal>
 

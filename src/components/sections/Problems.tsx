@@ -2,6 +2,7 @@
 
 import Reveal from "../Reveal";
 import { useLang } from "../LangProvider";
+import Rich from "../Rich";
 
 export default function Problems() {
   const { t } = useLang();
@@ -11,7 +12,9 @@ export default function Problems() {
       <div className="shell">
         <Reveal as="header" className="section-head">
           <p className="eyebrow">{t.problems.eyebrow}</p>
-          <h2 className="h2">{t.problems.title}</h2>
+          <h2 className="h2">
+            <Rich text={t.problems.title} />
+          </h2>
         </Reveal>
 
         <ul className="problem-list">

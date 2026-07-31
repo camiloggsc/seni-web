@@ -2,6 +2,7 @@
 
 import Reveal from "../Reveal";
 import { useLang } from "../LangProvider";
+import Rich from "../Rich";
 
 export default function Testimonials() {
   const { t } = useLang();
@@ -11,7 +12,9 @@ export default function Testimonials() {
       <div className="shell">
         <Reveal as="header" className="section-head">
           <p className="eyebrow">{t.testimonials.eyebrow}</p>
-          <h2 className="h2">{t.testimonials.title}</h2>
+          <h2 className="h2">
+            <Rich text={t.testimonials.title} />
+          </h2>
         </Reveal>
 
         <ul className="quotes">

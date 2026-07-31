@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Instrument_Sans } from "next/font/google";
+import { Outfit, Instrument_Sans, Instrument_Serif } from "next/font/google";
 import { copy } from "@/content/copy";
 import "./globals.css";
 
@@ -19,6 +19,19 @@ const instrument = Instrument_Sans({
   variable: "--font-instrument",
   subsets: ["latin"],
   display: "swap",
+});
+
+/**
+ * La itálica de contraste. Sin ella todo era geométrico y frío: es lo que
+ * separa una agencia latina de un dashboard de software.
+ * Misma fundición que Instrument Sans, así que armonizan de fábrica.
+ */
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+  style: ["italic", "normal"],
 });
 
 export const metadata: Metadata = {
@@ -44,7 +57,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={`${outfit.variable} ${instrument.variable}`}>
+    <html
+      lang="es"
+      className={`${outfit.variable} ${instrument.variable} ${instrumentSerif.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

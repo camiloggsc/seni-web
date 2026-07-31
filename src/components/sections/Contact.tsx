@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Reveal from "../Reveal";
 import { useLang } from "../LangProvider";
+import Rich from "../Rich";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -62,7 +63,9 @@ export default function Contact() {
       <div className="shell contact-grid">
         <Reveal className="contact-copy">
           <p className="eyebrow">{t.contact.eyebrow}</p>
-          <h2 className="h2">{t.contact.title}</h2>
+          <h2 className="h2">
+            <Rich text={t.contact.title} />
+          </h2>
           <p className="lede">{t.contact.lede}</p>
           <ul className="contact-bullets">
             {t.contact.bullets.map((item) => (

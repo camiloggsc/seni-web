@@ -16,11 +16,12 @@
   --color-sky: #56c7f0;
 
   /* Derivados */
-  --color-void: #0b0c11;
-  --color-bone: #f3f3f6;
+  --color-void: #0e0b16;
+  --color-bone: #f6f4f2;
 
   --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
 }
 
 :root {
@@ -218,6 +219,52 @@ body {
     background: none;
     color: CanvasText;
   }
+}
+
+/* Itálica serif de contraste dentro de los titulares. Es lo que separa
+   una agencia latina de un panel de software. */
+.serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  /* La serif tiene otra altura de x; se compensa para que no baile. */
+  font-size: 1.06em;
+  letter-spacing: -0.01em;
+}
+
+/* Resaltado de marca detrás de una frase, como marcador de texto. */
+.mark {
+  background: transparent;
+  color: inherit;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding-inline: 0.24em;
+  padding-block: 0.06em;
+  margin-inline: -0.06em;
+  border-radius: 0.18em;
+  background-image: linear-gradient(
+    100deg var(--in-oklab),
+    var(--color-blue),
+    var(--color-magenta)
+  );
+  color: #fff;
+}
+
+@media (forced-colors: active) {
+  .mark {
+    background: Highlight;
+    color: HighlightText;
+  }
+}
+
+/* Curva orgánica donde cambia el tono. El corte recto de bloque sobre bloque
+   era lo que hacía ver la página rígida; la curva la vuelve más cálida.
+   El selector de hermano adyacente la aplica sola en cada transición. */
+:where([data-tone="light"] + [data-tone="dark"], [data-tone="dark"] + [data-tone="light"]) {
+  --curve: clamp(1.5rem, 4vw, 3.25rem);
+  border-start-start-radius: var(--curve);
+  border-start-end-radius: var(--curve);
+  margin-block-start: calc(var(--curve) * -1);
 }
 
 /* ------------------------------------------------------------------ */

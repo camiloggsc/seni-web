@@ -2,6 +2,7 @@
 
 import Reveal from "../Reveal";
 import { useLang } from "../LangProvider";
+import Rich from "../Rich";
 
 export default function System() {
   const { t } = useLang();
@@ -12,7 +13,9 @@ export default function System() {
       <div className="shell">
         <Reveal as="header" className="section-head">
           <p className="eyebrow">{t.system.eyebrow}</p>
-          <h2 className="h2">{t.system.title}</h2>
+          <h2 className="h2">
+            <Rich text={t.system.title} />
+          </h2>
           <p className="lede">{t.system.lede}</p>
         </Reveal>
 

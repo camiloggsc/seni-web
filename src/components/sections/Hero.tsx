@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useLang } from "../LangProvider";
+import Rich from "../Rich";
 
 // El globo solo existe en el cliente: es puro WebGL y no aporta nada al HTML.
 const ServiceGlobe = dynamic(() => import("../ServiceGlobe"), { ssr: false });
@@ -19,7 +20,9 @@ export default function Hero() {
         {/* key={lang} rearma el titular al cambiar de idioma */}
         <h1 className="hero-title" key={lang}>
           <span className="hero-line">{t.hero.titleLead}</span>{" "}
-          <span className="hero-line grad-text">{t.hero.titleAccent}</span>
+          <span className="hero-line grad-text">
+            <Rich text={t.hero.titleAccent} />
+          </span>
         </h1>
 
         <div className="hero-aside">

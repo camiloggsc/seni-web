@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Reveal from "../Reveal";
 import { useLang } from "../LangProvider";
+import Rich from "../Rich";
 
 function Counter({ value, suffix, lang }: { value: number; suffix: string; lang: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -65,7 +66,9 @@ export default function Results() {
       <div className="shell">
         <Reveal as="header" className="section-head">
           <p className="eyebrow">{t.results.eyebrow}</p>
-          <h2 className="h2">{t.results.title}</h2>
+          <h2 className="h2">
+            <Rich text={t.results.title} />
+          </h2>
           <p className="lede">{t.results.lede}</p>
         </Reveal>
 
