@@ -67,33 +67,33 @@ export const copy = {
       ],
     },
     problems: {
-      eyebrow: "Lo que nos cuentan",
-      title: "Cosas que oímos *casi todas las semanas* en Houston.",
+      eyebrow: "Lo que te dijeron",
+      title: "Todo lo que te dijeron que hicieras, *ya lo hiciste*.",
       items: [
         {
-          title: "Subes reels casi diario y el teléfono no suena",
-          body: "Llevas ocho meses cumpliendo el calendario y los mensajes que llegan son de gente que ni compra ni vende.",
+          title: "«Publica todos los días»",
+          body: "Llevas ocho meses cumpliendo el calendario. Los mensajes que llegan son de gente que ni compra ni vende.",
         },
         {
-          title: "Pagaste ads y te mandaron capturas de alcance",
-          body: "Te pasaron el reporte con impresiones e interacciones y nadie te supo decir cuánto costó cada lead que sí contestó el teléfono.",
+          title: "«Métele dinero a los anuncios»",
+          body: "Te pasaron el reporte con impresiones e interacciones, y nadie te supo decir cuánto costó cada lead que sí contestó el teléfono.",
         },
         {
-          title: "Grabas con el celular en el carro entre cita y cita",
-          body: "El contenido sale cuando se puede, con la luz que haya, y por eso unas semanas te ven mil personas y otras cien.",
+          title: "«Grábalo con el celular, se ve más real»",
+          body: "Real, sí. Pero sale cuando se puede y con la luz que haya, y por eso unas semanas te ven mil personas y otras cien.",
         },
         {
-          title: "Contestan el mensaje y ahí muere",
-          body: "Después del «hola, ¿en qué te ayudo?» nadie sabe qué sigue, así que cada conversación sale distinta según quién esté contestando.",
+          title: "«Contesta rápido los mensajes»",
+          body: "Contestas en dos minutos. Después del «hola, ¿en qué te ayudo?» nadie sabe qué sigue, así que cada conversación termina distinta.",
         },
         {
-          title: "Cada mes empiezas de cero a ver qué subes",
-          body: "Sin un plan de tres meses, el contenido se decide el mismo día y se nota: sale apurado, sin remate y sin una idea que lo hile con lo anterior.",
+          title: "«Lo importante es ser constante»",
+          body: "Llevas un año siendo constante sin un plan de tres meses, y el contenido se sigue decidiendo el mismo día que se sube.",
         },
       ],
       closer: {
-        lead: "El mensaje lo escribe uno, el video lo graba otro y los ads los corre un tercero.",
-        body: "Esas tres personas nunca se sentaron a hablar entre sí. Cada quien entrega bien lo suyo, y aun así el negocio no se mueve.",
+        lead: "Ninguno de esos consejos está mal. Están sueltos.",
+        body: "El mensaje lo escribe uno, el video lo graba otro y los ads los corre un tercero. Esas tres personas nunca se sentaron a hablar entre sí, y así cada quien entrega bien lo suyo mientras el negocio no se mueve.",
       },
     },
     // Frase publicada por SENI en su propio Facebook. Va textual.
@@ -362,33 +362,33 @@ export const copy = {
       ],
     },
     problems: {
-      eyebrow: "What we hear",
-      title: "Things people tell us *almost every week* in Houston.",
+      eyebrow: "What you were told",
+      title: "You already did *everything they told you to do*.",
       items: [
         {
-          title: "You post reels almost daily and the phone stays quiet",
-          body: "Eight months of hitting the calendar, and the messages coming in are from people who aren't buying or selling anything.",
+          title: "\u201cPost every day\u201d",
+          body: "Eight months of hitting the calendar. The messages coming in are from people who aren\u2019t buying or selling anything.",
         },
         {
-          title: "You paid for ads and got screenshots of reach",
-          body: "They sent over a report full of impressions and engagement, and nobody could tell you what each lead who actually picked up the phone cost you.",
+          title: "\u201cPut money behind the ads\u201d",
+          body: "They sent the report full of impressions and engagement, and nobody could tell you what each lead who actually picked up the phone cost you.",
         },
         {
-          title: "You film on your phone in the car between showings",
-          body: "Content happens when it can, in whatever light you get, which is why some weeks a thousand people see you and other weeks a hundred do.",
+          title: "\u201cShoot it on your phone, it looks more real\u201d",
+          body: "Real, sure. But it happens when it can and in whatever light you get, which is why some weeks a thousand people see you and other weeks a hundred do.",
         },
         {
-          title: "Someone answers the message and it dies there",
-          body: "After \u201chi, how can I help?\u201d nobody knows what comes next, so every conversation goes differently depending on who's answering.",
+          title: "\u201cAnswer messages fast\u201d",
+          body: "You answer in two minutes. After \u201chi, how can I help?\u201d nobody knows what comes next, so every conversation ends differently.",
         },
         {
-          title: "Every month you start from scratch deciding what to post",
-          body: "Without a three-month plan, content gets decided the same day and it shows: rushed, no payoff, and nothing tying it to what came before.",
+          title: "\u201cJust stay consistent\u201d",
+          body: "You\u2019ve been consistent for a year without a three-month plan, and content still gets decided the same day it goes up.",
         },
       ],
       closer: {
-        lead: "One person writes the message, another shoots the video, a third runs the ads.",
-        body: "Those three have never sat in a room together. Each one delivers their piece fine, and the business still doesn't move.",
+        lead: "None of that advice is wrong. It is just loose.",
+        body: "One person writes the message, another shoots the video, a third runs the ads. Those three have never sat in a room together, so each one delivers their piece fine while the business stays put.",
       },
     },
     // Frase publicada por SENI en su propio Facebook. Se deja en espanol a proposito.
