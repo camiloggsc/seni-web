@@ -21,7 +21,7 @@ export default function Hero() {
         {/* key={lang} rearma el titular al cambiar de idioma */}
         <h1 className="hero-title" key={lang}>
           <span className="hero-line">{t.hero.titleLead}</span>{" "}
-          <span className="hero-line grad-text">
+          <span className="hero-line hero-accent">
             <Rich text={t.hero.titleAccent} />
           </span>
         </h1>

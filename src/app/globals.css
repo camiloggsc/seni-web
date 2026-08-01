@@ -173,14 +173,15 @@ body {
 
 .eyebrow::before {
   content: "";
-  inline-size: 1.75rem;
-  block-size: 2px;
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
   flex: none;
-  background: linear-gradient(
-    to right var(--in-oklab),
-    var(--color-blue),
-    var(--color-magenta)
-  );
+  /* Esquina de encuadre, no rayita de degradado: sale del mismo visor que
+     enmarca el hero, en vez de ser el separador de cualquier plantilla. */
+  border-inline-start: 1.5px solid var(--color-magenta);
+  border-block-start: 1.5px solid var(--color-magenta);
+  align-self: flex-start;
+  margin-block-start: 0.15em;
 }
 
 .display {
@@ -770,6 +771,13 @@ body {
   display: block;
 }
 
+/* Blanco sólido. El degradado sobre texto es el recurso que más delata una
+   plantilla, y aquí competía además con el globo. Se queda solo en el botón
+   y en el isotipo, que es donde la marca lo pide. */
+.hero-accent {
+  color: #fff;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   @keyframes hero-line-in {
     from {
@@ -1186,6 +1194,7 @@ body {
 
 .stat-value {
   display: block;
+  color: var(--text);
   font-family: var(--font-display);
   font-size: clamp(2.75rem, 2rem + 3.5vw, 4.75rem);
   font-weight: 400;
@@ -1802,5 +1811,23 @@ body {
 @media (width >= 62rem) {
   .beats-closer {
     margin-inline-start: 24%;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Áreas tocables en pantallas chicas                                  */
+/* ------------------------------------------------------------------ */
+
+/* Medidos a 390px, los enlaces del pie y del menú daban 19px de alto.
+   WCAG 2.5.8 pide 24 como mínimo, y con el dedo en movimiento se falla. */
+@media (pointer: coarse) {
+  :where(.footer-col a, .menu a, .header-nav a, .contact-bullets a) {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 2.75rem;
+  }
+
+  .footer-col ul {
+    gap: 0.15rem;
   }
 }
