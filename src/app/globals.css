@@ -1835,3 +1835,58 @@ body {
     gap: 0.15rem;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Trabajo — reels embebidos                                           */
+/* ------------------------------------------------------------------ */
+
+.reels {
+  display: grid;
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  /* Reserva la altura del reel vertical antes de que Instagram monte el
+     iframe: sin esto el bloque salta cuando cargan los tres. */
+  --alto-reel: 34rem;
+}
+
+.reels > li {
+  min-block-size: var(--alto-reel);
+  border-radius: 1.25rem;
+  /* Borde en degradado sin envoltorio extra. */
+  background:
+    linear-gradient(var(--surface-raised), var(--surface-raised)) padding-box,
+    linear-gradient(140deg var(--in-oklab), var(--color-blue), var(--color-magenta)) border-box;
+  border: 1px solid transparent;
+  overflow: clip;
+  display: flex;
+}
+
+/* Instagram inyecta estilos en línea; hay que ganarles con especificidad. */
+.reels .instagram-media {
+  margin: 0 !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+  border: 0 !important;
+  border-radius: 1.25rem !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.work-more {
+  margin-block-start: 2rem;
+  font-family: var(--font-display);
+}
+
+.work-more a {
+  border-block-end: 1px solid color-mix(in oklab, var(--color-magenta) 70%, transparent);
+  padding-block-end: 2px;
+  transition: color 0.2s ease;
+}
+
+.work-more a:where(:hover, :focus-visible) {
+  color: var(--color-magenta);
+}

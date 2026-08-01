@@ -111,6 +111,14 @@ export const copy = {
         body: "El mensaje lo escribe uno, el video lo graba otro y los ads los corre un tercero. Esas tres personas nunca se sentaron a hablar entre sí, y así cada quien entrega bien lo suyo mientras el negocio no se mueve.",
       },
     },
+    // Reels reales publicados en @seni.marketing.
+    work: {
+      eyebrow: "Trabajo",
+      title: "Lo que sale de un día de grabación.",
+      lede: "Piezas publicadas, no maquetas. Grabadas, editadas y corregidas de color por el mismo equipo que te va a atender.",
+      fallback: "Ver el reel en Instagram",
+      more: "Ver todo en @seni.marketing",
+    },
     // Frase publicada por SENI en su propio Facebook. Va textual.
     pullquote: {
       text: "Los resultados que buscas están en el trabajo que evades.",
@@ -394,6 +402,13 @@ export const copy = {
         lead: "All three have to point the same way.",
         body: "One person writes the message, another shoots the video, a third runs the ads. Those three have never sat in a room together, so each one delivers their piece fine while the business stays put.",
       },
+    },
+    work: {
+      eyebrow: "Work",
+      title: "What comes out of one shoot day.",
+      lede: "Published pieces, not mockups. Shot, edited and color graded by the same team that will take your call.",
+      fallback: "Watch the reel on Instagram",
+      more: "See everything at @seni.marketing",
     },
     // Frase publicada por SENI en su propio Facebook. Se deja en espanol a proposito.
     pullquote: {

@@ -7,6 +7,7 @@ import Problems from "@/components/sections/Problems";
 import System from "@/components/sections/System";
 import Services from "@/components/sections/Services";
 import PullQuote from "@/components/sections/PullQuote";
+import Work from "@/components/sections/Work";
 import Results from "@/components/sections/Results";
 import Culture from "@/components/sections/Culture";
 import Testimonials from "@/components/sections/Testimonials";
@@ -53,6 +54,7 @@ export default function Page() {
         <PullQuote />
         <System />
         <Services />
+        <Work />
         <Results />
         <Culture />
         <Testimonials />
