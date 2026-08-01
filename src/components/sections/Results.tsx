@@ -94,7 +94,9 @@ export default function Results() {
               <span className="case-tag">{item.tag}</span>
               <h3 className="h3">{item.title}</h3>
               <p>{item.body}</p>
-              <p className="case-metric">{item.metric}</p>
+              {/* Sin cifra real la línea no se dibuja: publicar "PENDIENTE"
+                  donde va el resultado es peor que no poner nada. */}
+              {item.metric && <p className="case-metric">{item.metric}</p>}
             </Reveal>
           ))}
         </ul>
