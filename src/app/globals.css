@@ -1849,10 +1849,16 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
   /* Reserva la altura del reel vertical antes de que Instagram monte el
      iframe: sin esto el bloque salta cuando cargan los tres. */
-  --alto-reel: 34rem;
+  --alto-reel: 35.5rem;
 }
 
 .reels > li {
+  /* El pie del embed (contador de me gusta y "ver mas") se recorta: en un
+     portafolio los numeros de una cuenta joven restan mas de lo que suman.
+     La cabecera con el perfil se conserva, que es la atribucion real.
+     Ojo: si Instagram cambia la altura del embed hay que reajustar esto.
+     La solucion definitiva es alojar los videos propios. */
+  block-size: var(--alto-reel);
   min-block-size: var(--alto-reel);
   border-radius: 1.25rem;
   /* Borde en degradado sin envoltorio extra. */
