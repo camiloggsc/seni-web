@@ -13,9 +13,37 @@ import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 
+/**
+ * Datos estructurados para buscadores.
+ *
+ * Solo lleva lo verificable: nombre, sitio, zona y perfiles reales. Sin
+ * teléfono ni dirección hasta tener los de verdad, porque un NAP falso le
+ * hace más daño al posicionamiento local que no tener ninguno.
+ * PENDIENTE: agregar telephone y address cuando Yaima los confirme.
+ */
+const DATOS_NEGOCIO = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "SENI Marketing",
+  url: "https://seniagency.com",
+  image: "https://seniagency.com/og.png",
+  description:
+    "Agencia de marketing en Houston: creación de contenido, Paid Ads y estrategia de redes sociales.",
+  areaServed: { "@type": "City", name: "Houston", addressRegion: "TX" },
+  knowsLanguage: ["es", "en"],
+  sameAs: [
+    "https://www.instagram.com/seni.marketing/",
+    "https://www.facebook.com/profile.php?id=61564070956542",
+  ],
+};
+
 export default function Page() {
   return (
     <LangProvider>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(DATOS_NEGOCIO) }}
+      />
       <BrandGradientDefs />
       <Nav />
       <main id="contenido" tabIndex={-1}>

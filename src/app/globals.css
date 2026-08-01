@@ -30,7 +30,7 @@
   --surface-raised: color-mix(in oklab, var(--color-ink) 88%, white 12%);
   --text: #ffffff;
   --text-muted: color-mix(in oklab, #ffffff 62%, var(--color-void));
-  --text-faint: color-mix(in oklab, #ffffff 38%, var(--color-void));
+  --text-faint: color-mix(in oklab, #ffffff 52%, var(--color-void));
   --rule: color-mix(in oklab, #ffffff 14%, transparent);
   --accent: var(--color-magenta);
 
@@ -55,7 +55,7 @@
   --surface-raised: #ffffff;
   --text: var(--color-ink);
   --text-muted: color-mix(in oklab, var(--color-ink) 68%, white);
-  --text-faint: color-mix(in oklab, var(--color-ink) 42%, white);
+  --text-faint: color-mix(in oklab, var(--color-ink) 62%, white);
   --rule: color-mix(in oklab, var(--color-ink) 14%, transparent);
   color-scheme: light;
 }
@@ -65,7 +65,7 @@
   --surface-raised: color-mix(in oklab, var(--color-ink) 88%, white 12%);
   --text: #ffffff;
   --text-muted: color-mix(in oklab, #ffffff 62%, var(--color-void));
-  --text-faint: color-mix(in oklab, #ffffff 38%, var(--color-void));
+  --text-faint: color-mix(in oklab, #ffffff 52%, var(--color-void));
   --rule: color-mix(in oklab, #ffffff 14%, transparent);
   color-scheme: dark;
 }
@@ -512,7 +512,6 @@ body {
    y el logo blanco se perdia sobre las claras. */
 .header[data-scrolled="true"] {
   background: color-mix(in oklab, var(--color-void) 94%, transparent);
-  backdrop-filter: blur(14px) saturate(140%);
   border-block-end-color: color-mix(in oklab, #fff 10%, transparent);
 }
 
@@ -861,7 +860,9 @@ body {
    referencia: se lee como algo mas grande que la pantalla. */
 .hero-globe {
   margin-block-start: clamp(1.5rem, 4vw, 3.5rem);
-  margin-block-end: calc(clamp(4rem, 9vw, 8rem) * -1);
+  /* Antes se recortaba tanto que la marquesina tapaba las esquinas de abajo
+     del visor y su etiqueta. Se deja asomar solo el casquete inferior. */
+  margin-block-end: calc(clamp(1.5rem, 4vw, 3.5rem) * -1);
   padding-inline: var(--gutter);
 }
 
@@ -1395,7 +1396,10 @@ body {
   inline-size: 100%;
   min-block-size: 3rem;
   padding: 0.75rem 1rem;
-  border: 1px solid var(--rule);
+  /* Borde propio, no var(--rule): sobre la tarjeta con blur daba 1.29:1 y
+     el campo era invisible en reposo. WCAG 1.4.11 pide 3:1 para el límite
+     del control. Con 34% de blanco sale 3.13:1 medido. */
+  border: 1px solid color-mix(in oklab, #fff 36%, transparent);
   border-radius: 0.75rem;
   background: color-mix(in oklab, var(--color-void) 60%, transparent);
   color: var(--text);
@@ -1412,7 +1416,7 @@ body {
 }
 
 .field :where(input, select, textarea):where(:hover) {
-  border-color: color-mix(in oklab, #fff 26%, transparent);
+  border-color: color-mix(in oklab, #fff 52%, transparent);
 }
 
 .field ::placeholder {

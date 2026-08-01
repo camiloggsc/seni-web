@@ -35,6 +35,10 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
+  // Sin metadataBase las rutas de imagen salen relativas y ninguna red social
+  // las resuelve, así que la tarjeta al compartir aparece vacía.
+  metadataBase: new URL("https://seniagency.com"),
+  alternates: { canonical: "/" },
   // La pestaña solo lleva el nombre. La descripción sigue cargando las
   // palabras que importan para buscadores.
   title: "SENI Marketing",
@@ -43,6 +47,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: copy.es.meta.title,
     description: copy.es.meta.description,
+    // PNG estático en vez de ruta generada: en un export a GitHub Pages la
+    // ruta dinámica sale sin extensión y las redes la sirven con el tipo
+    // equivocado, así que la tarjeta no carga.
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "SENI Marketing" }],
     type: "website",
     locale: "es_MX",
     alternateLocale: ["en_US"],

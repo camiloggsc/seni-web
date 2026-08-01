@@ -6,6 +6,11 @@ import Rich from "../Rich";
 
 export default function Testimonials() {
   const { t } = useLang();
+  const citas = t.testimonials.items.filter((item) => item.quote.trim().length > 0);
+
+  // Sin citas reales la sección no existe. Publicar "PENDIENTE" donde va la
+  // prueba social hace más daño que no tener sección.
+  if (citas.length === 0) return null;
 
   return (
     <section className="section testimonials" data-tone="light">
@@ -20,7 +25,7 @@ export default function Testimonials() {
         <ul className="quotes">
           {/* La lista es fija y no se reordena, asi que el indice sirve de
               clave. Con el texto fallaba: los marcadores son identicos. */}
-          {t.testimonials.items.map((item, i) => (
+          {citas.map((item, i) => (
             <Reveal as="li" key={i} className="quote" delay={i * 80}>
               <figure>
                 <blockquote>

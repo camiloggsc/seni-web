@@ -23,14 +23,22 @@ const LangContext = createContext<LangContextValue | null>(null);
 export function LangProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>("es");
 
-  // Restaura la preferencia guardada; si no hay, usa el idioma del navegador.
+  // Solo se restaura una elección explícita anterior.
+  //
+  // Antes también se miraba navigator.language, y eso reescribía la página
+  // entera al inglés después de hidratar: el HTML servido siempre sale en
+  // español, así que cualquier visitante con navegador en inglés veía el
+  // texto cambiar debajo de sus ojos, con el salto de maquetación que eso
+  // implica. Quien quiera inglés tiene el conmutador en el encabezado.
   useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored === "es" || stored === "en") {
-      setLangState(stored);
+    let stored: string | null = null;
+    try {
+      stored = window.localStorage.getItem(STORAGE_KEY);
+    } catch {
+      // Modo privado o almacenamiento bloqueado: se sigue con el idioma base.
       return;
     }
-    if (navigator.language.toLowerCase().startsWith("en")) setLangState("en");
+    if (stored === "es" || stored === "en") setLangState(stored);
   }, []);
 
   useEffect(() => {
@@ -39,7 +47,12 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
 
   const setLang = useCallback((next: Lang) => {
     setLangState(next);
-    window.localStorage.setItem(STORAGE_KEY, next);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, next);
+    } catch {
+      // Sin persistencia el idioma dura la sesión, que es mejor que romper
+      // toda la página con una excepción sin capturar.
+    }
   }, []);
 
   const value = useMemo<LangContextValue>(

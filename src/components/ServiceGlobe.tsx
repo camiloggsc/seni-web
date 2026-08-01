@@ -275,6 +275,20 @@ export default function ServiceGlobe({
     draw(performance.now());
     sync();
 
+    // Sin esto el globo queda en negro para siempre cuando el sistema
+    // recupera memoria de video, que en portátiles pasa al cambiar de app.
+    const onContextLost = (e: Event) => {
+      e.preventDefault();
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+    };
+    const onContextRestored = () => {
+      canvas.dataset.ready = "";
+      window.location.reload();
+    };
+    canvas.addEventListener("webglcontextlost", onContextLost);
+    canvas.addEventListener("webglcontextrestored", onContextRestored);
+
     document.addEventListener("visibilitychange", sync);
     motionQuery.addEventListener("change", sync);
     wrap.addEventListener("pointermove", onPointerMove);
@@ -288,6 +302,8 @@ export default function ServiceGlobe({
       if (raf) cancelAnimationFrame(raf);
       ro.disconnect();
       io.disconnect();
+      canvas.removeEventListener("webglcontextlost", onContextLost);
+      canvas.removeEventListener("webglcontextrestored", onContextRestored);
       document.removeEventListener("visibilitychange", sync);
       motionQuery.removeEventListener("change", sync);
       wrap.removeEventListener("pointermove", onPointerMove);

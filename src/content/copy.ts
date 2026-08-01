@@ -21,9 +21,9 @@ export type Lang = "es" | "en";
  *
  *   · "Una llamada de 45 minutos"          → system.steps[0], contact.bullets
  *   · "Diagnóstico por escrito en 3 días"  → contact.bullets
- *   · "Entre 15 y 20 piezas por sesión"    → system.steps[2], culture.points[0]
+ *   · "Entre 15 y 20 piezas por sesión"    → system.steps[2]
  *   · "Contestamos el mismo día"           → hero.note
- *   · "Al aire cuatro días después"        → culture.title y culture.body
+ *   · "Al aire cuatro días después"        → ya eliminado del copy
  *
  * Lo mismo aplica a los problemas de la sección "El problema": están
  * escritos desde la tríada que SENI publicó ("qué decir, cómo decirlo y a
@@ -254,17 +254,17 @@ export const copy = {
       note: "PENDIENTE: reemplazar con citas reales de tus clientes y su autorización por escrito.",
       items: [
         {
-          quote: "PENDIENTE: cita real del cliente.",
+          quote: "",
           name: "Nombre del cliente",
           role: "Puesto, Nombre del negocio",
         },
         {
-          quote: "PENDIENTE: cita real del cliente.",
+          quote: "",
           name: "Nombre del cliente",
           role: "Puesto, Nombre del negocio",
         },
         {
-          quote: "PENDIENTE: cita real del cliente.",
+          quote: "",
           name: "Nombre del cliente",
           role: "Puesto, Nombre del negocio",
         },
@@ -311,14 +311,14 @@ export const copy = {
       // TODO: correo y teléfono reales de SENI.
       contact: {
         label: "Contacto",
-        email: "PENDIENTE@senimarketing.com",
-        phone: "(832) 000-0000",
+        email: "",
+        phone: "",
         city: "Houston, TX",
       },
       social: { label: "Redes" },
       navLabel: "Secciones",
       rights: "Todos los derechos reservados.",
-      credits: "SENI marketing es una marca registrada.",
+      credits: "Houston, Texas.",
     },
   },
 
@@ -387,7 +387,7 @@ export const copy = {
         },
         {
           title: "Who to reach",
-          body: "Reaching all of Houston costs a lot and converts little. Targeting decides what you pay for each person who was going to buy anyway.",
+          body: "Reaching all of Houston costs a lot and converts little. Targeting decides how much you pay for each person who actually had a reason to buy.",
         },
       ],
       closer: {
@@ -534,17 +534,17 @@ export const copy = {
       note: "TODO: replace with real client quotes and written approval.",
       items: [
         {
-          quote: "TODO: real client quote.",
+          quote: "",
           name: "Client name",
           role: "Role, Business name",
         },
         {
-          quote: "TODO: real client quote.",
+          quote: "",
           name: "Client name",
           role: "Role, Business name",
         },
         {
-          quote: "TODO: real client quote.",
+          quote: "",
           name: "Client name",
           role: "Role, Business name",
         },
@@ -590,14 +590,14 @@ export const copy = {
       tagline: "Marketing Everywhere. Content, Ads and strategy for Houston businesses.",
       contact: {
         label: "Contact",
-        email: "TODO@senimarketing.com",
-        phone: "(832) 000-0000",
+        email: "",
+        phone: "",
         city: "Houston, TX",
       },
       social: { label: "Social" },
       navLabel: "Sections",
       rights: "All rights reserved.",
-      credits: "SENI marketing is a registered trademark.",
+      credits: "Houston, Texas.",
     },
   },
 } as const;

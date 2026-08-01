@@ -13,6 +13,10 @@ const SOCIAL = [
 
 export default function Footer() {
   const { t } = useLang();
+  // Se anotan como string porque el copy usa "as const" y la cadena vacía
+  // se estrecha a never dentro de la comprobación.
+  const email: string = t.footer.contact.email;
+  const phone: string = t.footer.contact.phone;
   // Se resuelve tras montar: calcularlo en render puede desincronizar
   // servidor y cliente justo en el cambio de anio.
   const [year, setYear] = useState<number | null>(null);
@@ -39,15 +43,19 @@ export default function Footer() {
 
         <div className="footer-col">
           <h2 className="footer-heading">{t.footer.contact.label}</h2>
+          {/* Enlazar un correo o un teléfono falso es peor que no ponerlo:
+              quien lo toca se queda sin manera de contactar. */}
           <ul>
-            <li>
-              <a href={`mailto:${t.footer.contact.email}`}>{t.footer.contact.email}</a>
-            </li>
-            <li>
-              <a href={`tel:${t.footer.contact.phone.replace(/\s/g, "")}`}>
-                {t.footer.contact.phone}
-              </a>
-            </li>
+            {email && (
+              <li>
+                <a href={`mailto:${email}`}>{email}</a>
+              </li>
+            )}
+            {phone && (
+              <li>
+                <a href={`tel:${phone.replace(/[^+\d]/g, "")}`}>{phone}</a>
+              </li>
+            )}
             <li>{t.footer.contact.city}</li>
           </ul>
         </div>
